@@ -2,7 +2,7 @@
 	"name": "mako/noxen",
 	"description": "Mako Framework + Noxen",
 	"keywords": ["mako", "framework", "Noxen"],
-	"homepage": "http://makoframework.com",
+	"homepage": "http://noxen.net",
 	"license": "BSD-3-Clause",
 	"authors": [
 		{
@@ -40,11 +40,6 @@
 	},
 	"minimum-stability": "dev",
 	"prefer-stable": true,
-	"extra": {
-		"branch-alias": {
-			 "dev-master": "4.3-dev"
-		}
-	},
 	"suggest": {
 		"mako/toolbar": "Makes it easier to debug your application while its under development"
 	}
