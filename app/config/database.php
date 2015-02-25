@@ -32,9 +32,9 @@ return
 	[
 		'test' => 
 		[
-			'dsn'         => 'mysql:dbname=noxen_mako;host=localhost;port=3306',
-			'username'    => 'root',
-			'password'    => 'erik',
+			'dsn'         => 'mysql:dbname=DATABASE_NAME;host=DATABASE_HOST;port=3306',
+			'username'    => 'USERNAME',
+			'password'    => 'PASSWORD',
 			'persistent'  => false,
 			'log_queries' => false,
 			'reconnect'   => false,
