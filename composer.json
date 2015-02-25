@@ -38,7 +38,6 @@
 	"config": {
 	    "preferred-install": "dist"
 	},
-	"prefer-stable": true,
 	"suggest": {
 		"mako/toolbar": "Makes it easier to debug your application while its under development"
 	}
