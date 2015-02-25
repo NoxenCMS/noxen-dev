@@ -1,0 +1,51 @@
+{
+	"name": "mako/app",
+	"description": "Mako Framework + Noxen",
+	"keywords": ["mako", "framework", "Noxen"],
+	"homepage": "http://makoframework.com",
+	"license": "BSD-3-Clause",
+	"authors": [
+		{
+			"name": "Frederic G. Østby",
+			"email": "frederic.g.ostby@gmail.com"
+		},
+		{
+			"name": "Contributors",
+			"homepage": "http://makoframework.com/contributors"
+		},
+		{
+            "name": "Erik Campobadal",
+            "email": "ConsoleTVs@gmail.com",
+            "homepage": "http://noxen.net",
+            "role": "Noxen Owner"
+        },
+		{
+            "name": "Thierry Prost",
+            "email": "thierry.prost@gmail.com",
+            "homepage": "http://noxen.net",
+            "role": "Noxen Developer"
+        }
+	],
+	"autoload": {
+		"psr-4": {
+			"app\\": "app"
+		}
+	},
+	"require": {
+		"php": ">=5.5.0",
+		"mako/framework": "4.3.*"
+	},
+	"config": {
+	    "preferred-install": "dist"
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"extra": {
+		"branch-alias": {
+			 "dev-master": "4.3-dev"
+		}
+	},
+	"suggest": {
+		"mako/toolbar": "Makes it easier to debug your application while its under development"
+	}
+}
