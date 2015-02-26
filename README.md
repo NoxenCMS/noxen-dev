@@ -1,4 +1,4 @@
-# Mako Framework
+# Mako Framework + Noxen
 
 Mako + Noxen is a lightweight and easy to use PHP framework based on the MVC architectural design pattern plus an administration panel for it to manage the website in some clicks.
 
