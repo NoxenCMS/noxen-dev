@@ -1,14 +1,14 @@
 <?php
 
-use mako\auth\gatekeeper;
+use mako\auth\Gatekeeper;
 use \mako\view\ViewFactory;
 use \mako\http\routing\URLBuilder;
-use \mako\database\connectionManager;
+use \mako\database\ConnectionManager;
 
 
-$filters->register('UserProtected', function(gatekeeper $gatekeeper, ViewFactory $view, URLBuilder $urlBuilder, ConnectionManager $connection)
+$filters->register('UserProtected', function(Gatekeeper $Gatekeeper, ViewFactory $view, URLBuilder $urlBuilder, ConnectionManager $connection)
 {
-	$isLoggedIn = $gatekeeper->isLoggedIn();
+	$isLoggedIn = $Gatekeeper->isLoggedIn();
 
 	if($isLoggedIn != 1){
 
@@ -21,7 +21,7 @@ $filters->register('UserProtected', function(gatekeeper $gatekeeper, ViewFactory
 
 $filters->register('AdminProtected', function(gatekeeper $gatekeeper, ViewFactory $view, URLBuilder $urlBuilder, ConnectionManager $connection)
 {
-	$isLoggedIn = $gatekeeper->isLoggedIn();
+	$isLoggedIn = $Gatekeeper->isLoggedIn();
 
 	if($isLoggedIn != 1){
 
@@ -33,7 +33,7 @@ $filters->register('AdminProtected', function(gatekeeper $gatekeeper, ViewFactor
     
 	$settings = $connection->first('SELECT * FROM settings WHERE `id` = ?', ['1']);
 
-	$user = $gatekeeper->getUser();
+	$user = $Gatekeeper->getUser();
 
 	$id = $user->id;
 
