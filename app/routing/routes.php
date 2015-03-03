@@ -19,9 +19,11 @@ $routes->group(['namespace' => 'app\controllers'], function($routes)
     
 	$routes->get('/', 'Index::welcome');
     
-    /* THE FOLLOWING GROUPS ARE ONLY USED WHILE INSTALLING NOXEN - RECOMENDED TO DELETE AFTER INSTALL */
+    ///*INSTALL
     $routes->get('/install', 'Install::installer');
     $routes->post('/install', 'Install::install');
+    $routes->get('/install/done', 'Install::done');
+    //*/ENDINSTALL
     
     /* THE FOLLOWING ROUTES ARE AN EXAMPLE OF THE DEMO WEBSITE */
     

@@ -12,7 +12,7 @@ class Install extends Controller
     public function installer(ViewFactory $view)
     {
         
-        $noxen_version = "2.0";
+        $noxen_version = "2.1";
         $noxen_author = "Erik Campobadal";
         $noxen_website = "http://noxen.net";
         $mako_website = "http://makoframework.com/";
@@ -43,6 +43,7 @@ class Install extends Controller
             'repeat_password' => ['required', 'match:"password"'],
             'name' => ['required'],
             'owner' => ['required'],
+            'noxen_version' => ['required'],
         ];
         
         $validator = $this->validator->create($this->request->post(), $rules);
@@ -55,8 +56,66 @@ class Install extends Controller
             $repeat_password = $_POST['repeat_password'];
             $app_name = $_POST['name'];
             $app_author = $_POST['owner'];
+            $noxen_version = $_POST['noxen_version'];
             
-            //INSTALL NOXEN
+            $db_username = $_POST['db_username'];
+            $db_password = $_POST['db_password'];
+            $db_name = $_POST['db_name'];
+            $db_host = $_POST['db_host'];
+            
+            
+            $path_to_file = 'app/config/database.php';
+            $file_contents = file_get_contents($path_to_file);
+            $file_contents = str_replace("USERNAME", $db_username, $file_contents);
+            $file_contents = str_replace("PASSWORD", $db_password, $file_contents);
+            $file_contents = str_replace("DATABASE_HOST", $db_host, $file_contents);
+            $file_contents = str_replace("DATABASE_NAME", $db_name, $file_contents);
+            file_put_contents($path_to_file,$file_contents);
+            
+            $urlBuilder = $this->urlBuilder;
+            $url = $urlBuilder->to("/install/done?app_author=$app_author&app_name=$app_name&password=$password&username=$username&email=$email&noxen_version=$noxen_version");
+            header("Location: $url");
+            die();
+            
+        }
+        else
+        {
+            $errors = $validator->getErrors();
+            var_dump($errors);
+        }
+        
+    }
+    
+    public function done(ViewFactory $view)
+    {
+        $noxen_version = $_GET['noxen_version'];
+        $username = $_GET['username'];
+        $email = $_GET['email'];
+        $password = $_GET['password'];
+        $app_name = $_GET['app_name'];
+        $app_author = $_GET['app_author'];
+        
+        if(!$username){
+            die("MISSING DATA: Username");
+        }
+        
+        if(!$email){
+            die("MISSING DATA: Email");
+        }
+        
+        if(!$password){
+            die("MISSING DATA: Password");
+        }
+        
+        if(!$app_name){
+            die("MISSING DATA: app_name");
+        }
+        
+        if(!$app_author){
+            die("MISSING DATA: app_author");
+        }
+        
+        //INSTALL NOXEN
             
             $connection = $this->database->connection();
             
@@ -222,13 +281,13 @@ ADD CONSTRAINT `users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELE
             $groupProvider = $this->gatekeeper->getGroupProvider();
             $group = $groupProvider->getByName($name);
             $group->addUser($user);
-            echo "NOXEN INSTALLED!";
-        }
-        else
-        {
-            $errors = $validator->getErrors();
-            var_dump($errors);
-        }
-        
+            
+            $path_to_file = 'app/routing/routes.php';
+            $file_contents = file_get_contents($path_to_file);
+            $file_contents = str_replace("///*INSTALL", "/*INSTALL", $file_contents);
+            $file_contents = str_replace("//*/ENDINSTALL", "ENDINSTALL*/", $file_contents);
+            file_put_contents($path_to_file,$file_contents);
+            
+            echo "<h1>Noxen $noxen_version is now installed</h1><h4>Install routes are now commented to avoid malicious re-installation</h4>";
     }
 }

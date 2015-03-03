@@ -23,14 +23,28 @@
                 <h1 class="light center">Install Preferences</h1><br>
                     <div class="row">
                         <div class="col s12 m12">
-                            <h4 class="light">Step 1 - Set up database</h4>
-                            <center>
-                                <p class="center">File: app/config/database.php</p>
-                                <p class="center">Replace: DATABASE_NAME, DATABASE_HOST, USERNAME, PASSWORD with your database information</p>
-                                <img class="responsive-img" src="<?php echo $urlBuilder->to('/assets/img/install_database.png') ?>">
-                                <p class="center red-text">Please save the file before going to the next step...</p>
-                            </center>
-                            <h4 class="light">Step 2 - Default Information</h4>
+                            <h4 class="light">Database Information</h4>
+                            <div class="row">
+                              <div class="input-field col s6">
+                                <input id="db_host" name="db_host" type="text" class="validate">
+                                <label for="db_host">Database Host</label>
+                              </div>
+                              <div class="input-field col s6">
+                                <input id="db_name" name="db_name" type="text" class="validate">
+                                <label for="db_name">Database Name</label>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="input-field col s6">
+                                <input id="db_username" name="db_username" type="text" class="validate">
+                                <label for="db_username">Database Username</label>
+                              </div>
+                              <div class="input-field col s6">
+                                <input id="db_password" name="db_password" type="password" class="validate">
+                                <label for="db_password">Database Password</label>
+                              </div>
+                            </div>
+                            <h4 class="light">Website Information</h4>
                             <div class="row">
                               <div class="input-field col s6">
                                 <input id="name" name="name" type="text" class="validate">
@@ -41,6 +55,7 @@
                                 <label for="owner">Website Owner</label>
                               </div>
                             </div>
+                            <h4 class="light">Administrator Information</h4>
                             <div class="row">
                               <div class="input-field col s6">
                                   <input style="display:none">
@@ -55,6 +70,7 @@
                             </div>
                             <div class="row">
                               <div class="input-field col s6">
+                                  <input style="display:none" name="noxen_version" id="noxen_version" value="{{ $noxen_version }}">
                                   <input style="display:none">
 					               <input type="password" style="display:none">
                                 <input id="password" name="password" type="password" class="validate">
